@@ -13,7 +13,6 @@ export default function RegisterPage() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,10 +32,10 @@ export default function RegisterPage() {
     setLoading(true)
 
     const supabase = createClient()
-	const { error } = await supabase.auth.signUp({
-	  email,
-	  password,
-	})
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    })
 
     if (error) {
       setError(error.message)
@@ -47,40 +46,9 @@ export default function RegisterPage() {
     router.push('/dashboard')
   }
 
-  if (success) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <div className="w-full max-w-md text-center">
-          <div className="w-16 h-16 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center mx-auto mb-6">
-            <svg className="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h1 className="font-serif text-3xl font-semibold text-text-primary mb-3">
-            Check your email
-          </h1>
-          <p className="text-text-muted text-sm mb-8 leading-relaxed">
-            We sent a confirmation link to <span className="text-text-secondary">{email}</span>.
-            Please verify your email to activate your account.
-          </p>
-          <p className="text-sm text-text-muted">
-            Already confirmed?{' '}
-            <button
-              onClick={() => router.push('/login')}
-              className="text-accent hover:text-accent-dark font-medium transition-colors"
-            >
-              Sign in
-            </button>
-          </p>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        {/* Logo */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-[10px] bg-accent flex items-center justify-center">
@@ -92,7 +60,6 @@ export default function RegisterPage() {
           <p className="text-text-muted text-sm">Join Trevio to manage your photo orders</p>
         </div>
 
-        {/* Form */}
         <div className="bg-card border border-[#2E2E2E] rounded-[16px] p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
@@ -161,7 +128,6 @@ export default function RegisterPage() {
           </form>
         </div>
 
-        {/* Login link */}
         <p className="text-center mt-6 text-sm text-text-muted">
           Already have an account?{' '}
           <Link href="/login" className="text-accent hover:text-accent-dark font-medium transition-colors">
