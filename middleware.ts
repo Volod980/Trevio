@@ -57,7 +57,7 @@ export async function middleware(request: NextRequest) {
 
   // Admin route protection
   if (user && pathname.startsWith('/admin')) {
-    const adminEmails = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || '').split(',').map(e => e.trim())
+    const adminEmails = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim())
     console.log('ADMIN_EMAILS:', process.env.ADMIN_EMAILS)
     console.log('user.email:', user.email)
     console.log('adminEmails array:', adminEmails)
