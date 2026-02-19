@@ -33,13 +33,10 @@ export default function RegisterPage() {
     setLoading(true)
 
     const supabase = createClient()
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${window.location.origin}/dashboard`,
-      },
-    })
+	const { error } = await supabase.auth.signUp({
+	  email,
+	  password,
+	})
 
     if (error) {
       setError(error.message)
@@ -47,8 +44,7 @@ export default function RegisterPage() {
       return
     }
 
-    setSuccess(true)
-    setLoading(false)
+    router.push('/dashboard')
   }
 
   if (success) {
