@@ -58,6 +58,10 @@ export async function middleware(request: NextRequest) {
   // Admin route protection
   if (user && pathname.startsWith('/admin')) {
     const adminEmails = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim())
+    console.log('ADMIN_EMAILS:', process.env.ADMIN_EMAILS)
+    console.log('user.email:', user.email)
+    console.log('adminEmails array:', adminEmails)
+    console.log('includes check:', adminEmails.includes(user.email || ''))
     if (!adminEmails.includes(user.email || '')) {
       const redirectUrl = request.nextUrl.clone()
       redirectUrl.pathname = '/dashboard'
