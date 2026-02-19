@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0D0D0D;
+  --foreground: #F5F5F5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #F5F5F5;
+  background: #0D0D0D;
+  font-family: 'Inter', 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1A1A1A;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2E2E2E;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4ADE80;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent text-background font-semibold px-6 py-3 rounded-[12px] transition-all duration-200 hover:bg-accent-dark hover:shadow-lg hover:shadow-accent/20 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border border-[#2E2E2E] text-text-primary font-medium px-6 py-3 rounded-[12px] transition-all duration-200 hover:border-accent/50 hover:bg-card disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply bg-transparent border border-status-cancelled/30 text-status-cancelled font-medium px-6 py-3 rounded-[12px] transition-all duration-200 hover:bg-status-cancelled/10 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input-field {
+    @apply w-full bg-surface border border-[#2E2E2E] text-text-primary rounded-[12px] px-4 py-3 text-sm transition-all duration-200 outline-none placeholder:text-text-muted focus:border-accent/50 focus:ring-1 focus:ring-accent/20;
+  }
+
+  .card {
+    @apply bg-card border border-[#2E2E2E] rounded-[12px] p-6;
+  }
+
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl font-semibold text-text-primary;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-text-secondary mb-2;
+  }
+}
